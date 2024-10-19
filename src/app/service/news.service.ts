@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class NewsService {
 
-  api_key="f10bc4b534dc49168ea9d2d27298fc49";
+  api_key="4657ed07c1d44fffa1145704e832e9b9";
+  
 
   constructor(private http : HttpClient) { }
 
@@ -22,4 +23,5 @@ export class NewsService {
   getArticlesByid(source: String) {
     return this.http.get('https://newsapi.org/v2/top-headlines?sources=' + source + '&apiKey=' + this.api_key);
   }
+
 }
