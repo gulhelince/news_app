@@ -9,6 +9,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSidenavModule,
     MatDividerModule,
     MatIconModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    HttpClientModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
