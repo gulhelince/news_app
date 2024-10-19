@@ -1,35 +1,95 @@
-import { AfterViewInit, ChangeDetectorRef, Component,OnInit,ViewChild } from '@angular/core';
+// import { AfterViewInit, ChangeDetectorRef, Component,OnInit,ViewChild } from '@angular/core';
+// import { MatSidenav } from '@angular/material/sidenav';
+// import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+// import { NewsService } from './service/news.service';
+
+// @Component({
+//   selector: 'app-root',
+//   templateUrl: './app.component.html',
+//   styleUrls: ['./app.component.scss']
+// })
+// export class AppComponent implements AfterViewInit,OnInit {
+
+
+//   title = 'news_app';
+//   public sources:any = [];
+//   public articles:any =[];
+//   public selectedNewsChannel:string = "Top 10 Trending News"
+//   @ViewChild(MatSidenav) sideNav!: MatSidenav;
+
+//   constructor(private observer: BreakpointObserver, private cdr: ChangeDetectorRef,private newsApi : NewsService) {}
+  
+//   ngOnInit(): void {
+//     this.newsApi.intitArticles()
+//     .subscribe((res:any)=>{
+//       console.log(res);
+//       this.articles = res.articles;
+//     });
+//     this.newsApi.initSources()
+//     .subscribe((res:any)=>{
+//       console.log(res);
+//       this.sources = res.sources;
+//     });
+//   }
+
+//   ngAfterViewInit(): void {
+//     this.sideNav.opened = true;
+
+//     this.observer.observe(['(max-width:787px)']).subscribe((res) => {
+//       if (res.matches) {
+//         this.sideNav.mode = 'over';
+//         this.sideNav.close();
+//       } else {
+//         this.sideNav.mode = 'side';
+//         this.sideNav.open();
+//       }
+//     });
+//     this.cdr.detectChanges(); // Ensures change detection is performed after view updates
+//   }
+
+//   searchSources(source:any){
+//     this.newsApi.getArticlesByid(source.id)
+//     .subscribe((res:any)=>{
+//       this.articles = res.articles;
+//       this.selectedNewsChannel = source.name;
+//     })
+//   }
+
+// }
+
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { NewsService } from './service/news.service';
+import { SwiperOptions } from 'swiper';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit,OnInit {
-
+export class AppComponent implements AfterViewInit, OnInit {
 
   title = 'news_app';
-  public sources:any = [];
-  public articles:any =[];
-  public selectedNewsChannel:string = "Top 10 Trending News"
+  public sources: any = [];
+  public articles: any = [];
+  public randomArticles: any = []; // Rastgele seçilen üç makale için dizi
+  
+  public selectedNewsChannel: string = "Top 10 Trending News";
   @ViewChild(MatSidenav) sideNav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver, private cdr: ChangeDetectorRef,private newsApi : NewsService) {}
-  
+  constructor(private observer: BreakpointObserver, private cdr: ChangeDetectorRef, private newsApi: NewsService) {}
+
   ngOnInit(): void {
     this.newsApi.intitArticles()
-    .subscribe((res:any)=>{
-      console.log(res);
-      this.articles = res.articles;
-    });
+      .subscribe((res: any) => {
+        this.articles = res.articles;
+        this.pickRandomArticles(); // Rastgele makaleleri seç
+      });
     this.newsApi.initSources()
-    .subscribe((res:any)=>{
-      console.log(res);
-      this.sources = res.sources;
-    });
+      .subscribe((res: any) => {
+        this.sources = res.sources;
+      });
   }
 
   ngAfterViewInit(): void {
@@ -44,17 +104,34 @@ export class AppComponent implements AfterViewInit,OnInit {
         this.sideNav.open();
       }
     });
-    this.cdr.detectChanges(); // Ensures change detection is performed after view updates
+    this.cdr.detectChanges();
   }
 
-  searchSources(source:any){
+  searchSources(source: any) {
     this.newsApi.getArticlesByid(source.id)
-    .subscribe((res:any)=>{
-      this.articles = res.articles;
-      this.selectedNewsChannel = source.name;
-    })
+      .subscribe((res: any) => {
+        this.articles = res.articles;
+        this.selectedNewsChannel = source.name;
+        this.pickRandomArticles(); // Kaynağı değiştirdiğinizde rastgele makaleleri güncelle
+      });
   }
 
+  // Rastgele üç makale seçme işlevi
+  pickRandomArticles() {
+    const shuffled = this.articles.sort(() => 0.5 - Math.random());
+    this.randomArticles = shuffled.slice(0, 3);
+  }
+
+  swiperConfig: SwiperOptions = {
+    slidesPerView: 1,   // Aynı anda kaç slide gösterileceği
+    spaceBetween: 10,   // Slide'lar arasındaki boşluk
+    navigation: true,   // Önceki/sonraki düğmeleri gösterme
+    pagination: { clickable: true },  // Sayfa numaralandırma
+    loop: true,          // Sonsuz döngü modunu etkinleştir
+    autoplay: { delay: 3000 } // Otomatik kaydırma (ms cinsinden)
+  };
+
+  
 }
 
 

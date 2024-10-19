@@ -10,6 +10,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HttpClientModule } from '@angular/common/http';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatSlideToggleModule,
     HttpClientModule,
-    
+    SwiperModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
