@@ -83,4 +83,20 @@ mat-divider {
     color: #333;
   }
   
-  
+  .box{
+    padding: 10px 10px;
+    background-color: rgb(240,240,240);
+}
+
+.box h5{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.box img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+

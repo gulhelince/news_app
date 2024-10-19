@@ -18,7 +18,7 @@
 //   @ViewChild(MatSidenav) sideNav!: MatSidenav;
 
 //   constructor(private observer: BreakpointObserver, private cdr: ChangeDetectorRef,private newsApi : NewsService) {}
-  
+
 //   ngOnInit(): void {
 //     this.newsApi.intitArticles()
 //     .subscribe((res:any)=>{
@@ -74,7 +74,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   public sources: any = [];
   public articles: any = [];
   public randomArticles: any = []; // Rastgele seçilen üç makale için dizi
-  
+
   public selectedNewsChannel: string = "Top 10 Trending News";
   @ViewChild(MatSidenav) sideNav!: MatSidenav;
 
@@ -131,7 +131,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     autoplay: { delay: 3000 } // Otomatik kaydırma (ms cinsinden)
   };
 
-  
+
 }
 
 
@@ -140,10 +140,10 @@ export class AppComponent implements AfterViewInit, OnInit {
   // @ViewChild(MatSidenav) sideNav!: MatSidenav;
 
   // constructor(private observer : BreakpointObserver, private cdr: ChangeDetectorRef){}
-  
+
   // ngAfterViewInit(): void {
   //   this.sideNav.opened = true;
-    
+
   //   this.observer.observe(['(max-width:787px)'])
   //   .subscribe((res)=>{
   //     if(res?.matches){

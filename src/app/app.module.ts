@@ -12,6 +12,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HttpClientModule } from '@angular/common/http';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatSlideToggleModule,
     HttpClientModule,
     SwiperModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
